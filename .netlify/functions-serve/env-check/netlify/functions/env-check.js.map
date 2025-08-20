@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "sources": ["../../../../../../Users/nico/Documents/currency-service/netlify/functions/env-check.js"],
+  "sourceRoot": "/var/folders/dz/zy3th9bd18z7_5sjgj8jrymr0000gn/T/tmp-13120-w7No934G0kBO",
+  "sourcesContent": ["export const handler = async () => ({\n  statusCode: 200,\n  headers: { \"content-type\": \"text/plain; charset=utf-8\" },\n  body: process.env.DATABASE_URL ? \"DATABASE_URL: OK\" : \"DATABASE_URL: MISSING\"\n});"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAO,IAAM,UAAU,aAAa;AAAA,EAClC,YAAY;AAAA,EACZ,SAAS,EAAE,gBAAgB,4BAA4B;AAAA,EACvD,MAAM,QAAQ,IAAI,eAAe,qBAAqB;AACxD;",
+  "names": []
+}

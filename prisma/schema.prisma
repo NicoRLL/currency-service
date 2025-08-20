@@ -1,0 +1,23 @@
+// prisma/schema.prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") 
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model FxLog {
+  id               Int      @id @default(autoincrement())
+  createdAt        DateTime @default(now())        
+  fromCurrency     String                              
+  toCurrency       String                              
+  amount           Float                             
+  rate             Float                                
+  received         Float                                
+  provider         String                           
+  providerTimestamp String                            
+  clientIp         String?                            
+  userAgent        String?                           
+}

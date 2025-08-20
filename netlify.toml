@@ -1,0 +1,11 @@
+[build]
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@prisma/client", "prisma"]
+
+[[redirects]]
+  from = "/fx/quote"
+  to = "/.netlify/functions/fx-quote"
+  status = 200
