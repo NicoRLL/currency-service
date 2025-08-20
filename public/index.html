@@ -1,1 +1,79 @@
-<h1>Currency Service</h1><p>API running. Use <code>/fx/quote</code></p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Currency Service</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 40px auto;
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    }
+    h1 { text-align: center; }
+    label { display: block; margin-top: 10px; }
+    input, select, button {
+      width: 100%; padding: 10px; margin-top: 5px;
+    }
+    pre {
+      background: #fff;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      white-space: pre-wrap;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Currency Service</h1>
+  <form id="quoteForm">
+    <label>Monto:</label>
+    <input type="number" id="amount" value="1000" required />
+
+    <label>Desde:</label>
+    <select id="from">
+      <option value="USD">USD</option>
+      <option value="EUR">EUR</option>
+      <option value="UYU" selected>UYU</option>
+      <option value="ARS">ARS</option>
+    </select>
+
+    <label>Hacia:</label>
+    <select id="to">
+      <option value="USD" selected>USD</option>
+      <option value="EUR">EUR</option>
+      <option value="GBP">GBP</option>
+      <option value="UYU">UYU</option>
+    </select>
+
+    <button type="submit">Obtener cotización</button>
+  </form>
+
+  <pre id="result">Aquí aparecerá la cotización...</pre>
+
+  <script>
+    const form = document.getElementById("quoteForm");
+    const result = document.getElementById("result");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const amount = document.getElementById("amount").value;
+      const from = document.getElementById("from").value;
+      const to = document.getElementById("to").value;
+
+      try {
+        const res = await fetch(`/fx/quote?from=${from}&to=${to}&amount=${amount}`);
+        const data = await res.json();
+        result.textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        result.textContent = "Error al obtener la cotización: " + err.message;
+      }
+    });
+  </script>
+</body>
+</html>
