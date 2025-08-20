@@ -1,12 +1,20 @@
 [build]
   functions = "netlify/functions"
-  publish = "public"
+  publish   = "public"
 
 [functions]
   node_bundler = "esbuild"
-  external_node_modules = ["@prisma/client", "prisma"]
+
+
+[functions."fx-quote"]
+  external_node_modules = ["@prisma/client"]
+  included_files = [
+    "node_modules/@prisma/client/**",
+    "node_modules/.prisma/client/**",
+    "prisma/schema.prisma"
+  ]
 
 [[redirects]]
   from = "/fx/quote"
-  to = "/.netlify/functions/fx-quote"
+  to   = "/.netlify/functions/fx-quote"
   status = 200
