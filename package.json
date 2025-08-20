@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "build": "prisma generate",
     "dev": "node src/server.js",
     "dev:nf": "npx netlify-cli@latest dev"
   },
